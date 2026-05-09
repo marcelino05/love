@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Para você ❤️</title>
+
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background: linear-gradient(135deg, #ff4d6d, #ffb3c1);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                color: white;
+                text-align: center;
+            }
+
+            .card {
+                background: rgba(0, 0, 0, 0.35);
+                padding: 25px;
+                border-radius: 15px;
+                width: 90%;
+                max-width: 420px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
+
+            h1,
+            h2 {
+                margin-bottom: 15px;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            input {
+                padding: 10px;
+                width: 90%;
+                border: none;
+                border-radius: 8px;
+                margin-bottom: 15px;
+                outline: none;
+            }
+
+            button {
+                padding: 10px 20px;
+                margin: 5px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .btn {
+                background: white;
+                color: #ff4d6d;
+            }
+
+            .btn:hover {
+                background: #ffe6ea;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            .yes {
+                background: #00c853;
+                color: white;
+            }
+
+            .no {
+                background: #d50000;
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="card">
+            <!-- STEP 1 -->
+            <div id="step1">
+                <h1>Olá ❤️</h1>
+                <h2>Maria Clara Jaime Tomas</h2>
+                <!-- <p>Posso saber o teu nome?</p> -->
+                <!-- <input type="text" id="name" placeholder="Escreve teu nome" /> -->
+                <br />
+                <button class="btn" onclick="nextStep1()">Continuar</button>
+            </div>
+
+            <!-- STEP 2 -->
+            <div id="step2" class="hidden">
+                <h2 id="greeting"></h2>
+                <p>Desde o momento em que te vi, algo em mim mudou ❤️</p>
+                <button class="btn" onclick="nextStep2()">Continuar</button>
+            </div>
+
+            <!-- STEP 3 -->
+            <div id="step3" class="hidden">
+                <h2>Sabes...</h2>
+                <p>Há algo em ti que me faz sorrir sem perceber 🌹</p>
+                <button class="btn" onclick="nextStep3()">Continuar</button>
+            </div>
+
+            <!-- STEP 4 -->
+            <div id="step4" class="hidden">
+                <h2>É estranho...</h2>
+                <p>Mas ultimamente, não consigo tirar-te da minha mente 💭</p>
+                <button class="btn" onclick="nextStep4()">Continuar</button>
+            </div>
+
+            <!-- STEP 5 -->
+            <div id="step5" class="hidden">
+                <h2>O coração fala</h2>
+                <p>Ele insiste em dizer que tu és especial para mim 💖</p>
+                <button class="btn" onclick="nextStep5()">Continuar</button>
+            </div>
+
+            <!-- STEP 6 (REVISTO) -->
+            <div id="step6" class="hidden">
+                <h2 id="finalText"></h2>
+                <p>
+                    Eu não sei como explicar isso perfeitamente... mas o que sinto por ti é verdadeiro. Quero ser
+                    honesto contigo agora.
+                </p>
+
+                <p>Queres namorar comigo? 💖</p>
+
+                <button class="yes" onclick="resposta('sim')">Sim</button>
+                <button class="no" onclick="resposta('nao')">Não</button>
+            </div>
+
+            <!-- FINAL -->
+            <div id="final" class="hidden">
+                <h2 id="resultado"></h2>
+            </div>
+        </div>
+
+        <script>
+            let nome = "Maria Clara Jaime Tomas";
+            const meuNumeroWhatsApp = "+258858894180";
+
+            function nextStep1() {
+                nome = "Maria Clara Jaime Tomas";
+
+                document.getElementById("step1").classList.add("hidden");
+                document.getElementById("step2").classList.remove("hidden");
+
+                document.getElementById("greeting").innerText = `Olá ${nome} ❤️`;
+            }
+
+            function nextStep2() {
+                document.getElementById("step2").classList.add("hidden");
+                document.getElementById("step3").classList.remove("hidden");
+            }
+
+            function nextStep3() {
+                document.getElementById("step3").classList.add("hidden");
+                document.getElementById("step4").classList.remove("hidden");
+            }
+
+            function nextStep4() {
+                document.getElementById("step4").classList.add("hidden");
+                document.getElementById("step5").classList.remove("hidden");
+            }
+
+            function nextStep5() {
+                document.getElementById("step5").classList.add("hidden");
+                document.getElementById("step6").classList.remove("hidden");
+
+                document.getElementById("finalText").innerText = `${nome}, preciso te dizer algo muito importante...`;
+            }
+
+            function resposta(r) {
+                document.getElementById("step6").classList.add("hidden");
+                document.getElementById("final").classList.remove("hidden");
+
+                let mensagem = "";
+
+                if (r === "sim") {
+                    mensagem = `Obrigado ${nome} ❤️ por aceitares o que sinto. Prometo valorizar cada momento contigo com respeito e carinho.`;
+                } else {
+                    mensagem = `Obrigado ${nome} ❤️ por seres sincera comigo. Respeito a tua decisão e continuo a desejar-te o melhor.`;
+                }
+
+                document.getElementById("resultado").innerText = mensagem;
+
+                const texto = encodeURIComponent(`Resposta recebida: ${mensagem}`);
+                window.open(`https://wa.me/${meuNumeroWhatsApp.replace("+", "")}?text=${texto}`, "_blank");
+            }
+        </script>
+    </body>
+</html>
